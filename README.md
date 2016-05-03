@@ -1,65 +1,29 @@
-# Turkey
-Exploring a turnkey starting point for JS projects.
 
-# Solutions to wire up
-- Source control
-    + git
-    + gh
-- Package Management
-    + NPM
-- Build
-    + Webpack
-    + Babel
-    + ESLint
-- Base deps
-    + React
-    + Lodash
-- Publishing bleeding edge stuff to es5 compatible lib
-- live coding
-- production build
-    + only uglify app code?
-- deploying to ???
-    + pushstate compatible server for nice single page app routing
-- firebase
-    + users?
-- canvas
-    + createjs
-- webfonts
-    + typekit
-    + npm?
-- deps:
-    + redux?
-    + immutable?
-    + css/style?
+# Scrolltime
 
-# Steps Taken
-- create a repo on Github
-- add collaborators
-- clone repo locally
-- `npm init`
-- add a `postversion` npm script to push after bumping version
-- install some deps: 
-    -- dev deps
-    + webpack
-    + babel babel-cli babel-core babel-loader babel-preset-es2015 babel-react
-    + eslint
-    -- deps
-    + react, react-dom
-    + lodash
-- update NPM: `npm update npm -g`
-- add a .gitignore
-- wire babel setup in package.json
-- setup eslint config
-- setup eslint for editor (already setup.. not sure what I did)
-- setup webpack dev
-- setup webpack build
-    + production
-    + uglify
-    + added babel polyfill for app & webpack config
-    + sniffing ENV, default to 'development' and blows up on unknown
+Rough spike of binding a timeline-based canvas animation to a vertical scrolling page.
+
+Rough inital steps:
+- make a simple demo animation ✓
+- wire animation up fullscreen 'fixed' ✓
+- setup a scrolling DOM element of arbitrary length ✓
+- listen for scroll event ✓
+- normalize scroll position to a number between 0-1 ✓
+- apply that scroll percentage to the timeline ✓
 
 
+Potential next steps:
+- re-center animation on resize
+- resolution independant
+    + on startup
+    + on resize (only matters for multi-monitors)
 
 
-
-
+Notes:
+- explore why stage is getting passed in as a callback to the tick listener
+- come up w/ a good story for importing createjs (maybe submit a PR for gskinner?)
+- build isn't watching html and copying to build
+- we have multiple files not being watched: index and assets
+- explore whether or not to scale the animation in this
+- explore scroll boundary 'bounce' and cross platform differences (safari hello?)
+- 
