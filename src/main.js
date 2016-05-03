@@ -54,10 +54,6 @@ const main = root.main
 
 main.gotoAndStop(0)
 
-
-
-
-
 sizeAnimation(canvas, main)
 window.addEventListener("resize", () => {
   sizeAnimation(canvas, main)
@@ -79,6 +75,22 @@ Object.assign(scrollpane.style, {
 
 document.body.appendChild(scrollpane)
 
+
+
+// DOM node that chases createjs object
+
+const node = document.createElement("div")
+document.body.appendChild(node)
+Object.assign(node.style, {
+  position: "fixed",
+  top: "0",
+  left: "0",
+  width: "20px",
+  height: "20px",
+  backgroundColor: "gray"
+})
+
+
 window.addEventListener("scroll", ()=> {
   // console.log("scrolling!!!")
   // console.log("scrollpane height:", scrollpane.style.height)
@@ -92,9 +104,20 @@ window.addEventListener("scroll", ()=> {
 
   main.gotoAndStop(targetFrame)
 
+  Object.assign(node.style, {
+    top: `${tree.y + main.y}px`,
+    left: `${tree.x + main.x}px`,
+    transform: `rotate(${tree.rotation}deg)`,
+  })
+
+
   // console.log(winHeight, scrollpaneHeight, scrollPos, paneHeightOffset, scrollPercent)
 
 })
+
+
+
+
 
 
 
