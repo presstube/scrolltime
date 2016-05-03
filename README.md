@@ -13,8 +13,9 @@ Rough inital steps:
 
 
 Potential next steps:
-- re-center animation on resize
-- resolution independant
+- re-center animation on resize ✓
+- Bind a DOM Node position to a canvas object ✓
+- resolution independent
     + on startup
     + on resize (only matters for multi-monitors)
 
