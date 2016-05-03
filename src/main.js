@@ -1,8 +1,32 @@
-import React from "react"
+// import React from "react"
 
 // const foo = <div />
 
 // console.log(foo)
+
+
+
+// Library
+
+const sizeAnimation = (canvas, movieClip) => {
+  // Size the canvas scale
+  Object.assign(canvas.style, {
+    width: `${window.innerWidth}px`,
+    height: `${window.innerHeight}px`,
+  })
+  // Size the actual canvas bitmap
+  Object.assign(canvas, {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  })
+  // Position the main movie clip
+  movieClip.x = window.innerWidth / 2
+  movieClip.y = window.innerHeight / 2
+}
+
+
+
+// Application
 
 const c = createjs
 const canvas = document.createElement("canvas")
@@ -17,15 +41,9 @@ Object.assign(canvas.style, {
   position: "fixed",
   top: "0px",
   left: "0px",
-  // backgroundColor: "red",
-  width: `${window.innerWidth}px`,
-  height: `${window.innerHeight}px`,
 })
 
-Object.assign(canvas, {
-  width: window.innerWidth,
-  height: window.innerHeight
-})
+
 
 const stage = new c.Stage(canvas)
 const root = new lib.timelineanimation()
@@ -33,10 +51,17 @@ stage.addChild(root)
 stage.update()
 
 const main = root.main
-main.x = window.innerWidth / 2
-main.y = window.innerHeight / 2
+
 main.gotoAndStop(0)
 
+
+
+
+
+sizeAnimation(canvas, main)
+window.addEventListener("resize", () => {
+  sizeAnimation(canvas, main)
+})
 
 const tree = main.tree
 
@@ -55,8 +80,8 @@ Object.assign(scrollpane.style, {
 document.body.appendChild(scrollpane)
 
 window.addEventListener("scroll", ()=> {
-  console.log("scrolling!!!")
-  console.log("scrollpane height:", scrollpane.style.height)
+  // console.log("scrolling!!!")
+  // console.log("scrollpane height:", scrollpane.style.height)
 
   const winHeight = window.innerHeight
   const scrollpaneHeight = parseInt(scrollpane.style.height, 10)
@@ -67,13 +92,8 @@ window.addEventListener("scroll", ()=> {
 
   main.gotoAndStop(targetFrame)
 
-  console.log(winHeight, scrollpaneHeight, scrollPos, paneHeightOffset, scrollPercent)
+  // console.log(winHeight, scrollpaneHeight, scrollPos, paneHeightOffset, scrollPercent)
 
-})
-
-
-window.addEventListener("resize", ()=> {
-  console.log("resize: ", window.devicePixelRatio)
 })
 
 
