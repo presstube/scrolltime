@@ -1,7 +1,7 @@
 <DOMDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" currentTimeline="1" xflVersion="2.7" creatorInfo="Adobe Animate CC" platform="Macintosh" versionInfo="Saved by Animate Macintosh 15.1 build 13" majorVersion="15" minorVersion="1" buildNumber="13" guidesSnapTo="false" snapAlign="false" objectsSnapTo="false" previewMode="fast" nextSceneIdentifier="2" playOptionsPlayLoop="false" playOptionsPlayPages="false" playOptionsPlayFrameActions="false" filetypeGUID="3CE50BB6-55CF-47A6-B591-01286DDDC64C">
      <symbols>
-          <Include href="Symbol 1.xml" loadImmediate="false" itemID="5728d4c2-0000001d" lastModified="1462294391"/>
-          <Include href="triangle.xml" loadImmediate="false" itemID="5728d5c7-00000024" lastModified="1462293965"/>
+          <Include href="main-mc.xml" loadImmediate="false" itemID="5728d972-00000037" lastModified="1462297064"/>
+          <Include href="tree-mc.xml" loadImmediate="false" itemID="5728d974-00000038" lastModified="1462294900"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
@@ -10,7 +10,7 @@
                          <frames>
                               <DOMFrame index="0" keyMode="9728">
                                    <elements>
-                                        <DOMSymbolInstance libraryItemName="Symbol 1" name="main" selected="true">
+                                        <DOMSymbolInstance libraryItemName="main-mc" name="main">
                                              <matrix>
                                                   <Matrix tx="275" ty="200"/>
                                              </matrix>
@@ -25,6 +25,9 @@
                </layers>
           </DOMTimeline>
      </timelines>
+     <persistentData>
+          <PD n="CreateJSToolkit_timelinedata" v="version&#xA;0.1&#xA;loop&#xA;true"/>
+     </persistentData>
      <PrinterSettings platform="macintosh"/>
      <publishHistory/>
 </DOMDocument>
