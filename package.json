@@ -11,7 +11,8 @@
     "lint": "eslint src/main.js",
     "postversion": "git push && git push --tags",
     "build-production": "npm run beforebuild && webpack -p --devtool sourcemap",
-    "deploy-surge": "surge --domain scrolltime.surge.sh --project ./build"
+    "deploy-surge": "npm run build-production && surge --domain scrolltime.surge.sh --project ./build",
+    "deploy-firebase": "npm run build-production && firebase deploy"
   },
   "repository": {
     "type": "git",
