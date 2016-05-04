@@ -31,7 +31,7 @@ Object.assign(canvas.style, {
 
 
 const stage = new c.Stage(canvas)
-const root = new lib.timelineanimation()
+const root = new lib.kiss()
 stage.addChild(root)
 stage.update()
 
@@ -39,34 +39,34 @@ const main = root.main
 
 main.gotoAndStop(0)
 
-const circle = document.createElement("div")
-document.body.appendChild(circle)
-Object.assign(circle.style, {
-  position: "fixed",
-  top: "-70px",
-  left: "-70px",
-  width: "140px",
-  height: "140px",
-  backgroundColor: "rgba(0, 0, 0, 0.1)",
-  borderRadius: "50%",
-  // transformOrigin: "-70px -70px"
-  // transform: "translate(-70px, -70px)"
-})
+// const circle = document.createElement("div")
+// document.body.appendChild(circle)
+// Object.assign(circle.style, {
+//   position: "fixed",
+//   top: "-70px",
+//   left: "-70px",
+//   width: "140px",
+//   height: "140px",
+//   backgroundColor: "rgba(0, 0, 0, 0.1)",
+//   borderRadius: "50%",
+//   // transformOrigin: "-70px -70px"
+//   // transform: "translate(-70px, -70px)"
+// })
 
-const innerDot = document.createElement("div")
-circle.appendChild(innerDot)
-Object.assign(innerDot.style, {
-  position: "relative",
-  width: "10px",
-  height: "10px",
-  top: "10%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  borderRadius: "50%",
-  backgroundColor: "hsla(0, 50%, 0%, 0.2)"
-})
+// const innerDot = document.createElement("div")
+// circle.appendChild(innerDot)
+// Object.assign(innerDot.style, {
+//   position: "relative",
+//   width: "10px",
+//   height: "10px",
+//   top: "10%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   borderRadius: "50%",
+//   backgroundColor: "hsla(0, 50%, 0%, 0.2)"
+// })
 
-const tree = main.tree
+// const tree = main.tree
 
 c.Ticker.setFPS(30)
 c.Ticker.addEventListener("tick", stage)
@@ -74,6 +74,7 @@ c.Ticker.addEventListener("tick", stage)
 const scrollpane = document.createElement("div")
 
 Object.assign(scrollpane.style, {
+  // height: `${window.innerHeight * 1.2}px`,
   height: "3000px",
   background: "url('bg.png')",
   padding: "0px",
@@ -83,19 +84,19 @@ Object.assign(scrollpane.style, {
 document.body.appendChild(scrollpane)
 
 
-const trackDIV = () => {
-  Object.assign(circle.style, {
-    // top: `${tree.y + main.y}px`,
-    // left: `${tree.x + main.x}px`,
-    transform: `
-      translate(${tree.x + main.x}px, ${tree.y + main.y}px)
-      rotate(${tree.rotation}deg)
-      scale(${tree.scaleX}, ${tree.scaleY})`
-    // transform: `rotate(${tree.rotation}deg)`,
-  })
-}
+// const trackDIV = () => {
+//   Object.assign(circle.style, {
+//     // top: `${tree.y + main.y}px`,
+//     // left: `${tree.x + main.x}px`,
+//     transform: `
+//       translate(${tree.x + main.x}px, ${tree.y + main.y}px)
+//       rotate(${tree.rotation}deg)
+//       scale(${tree.scaleX}, ${tree.scaleY})`
+//     // transform: `rotate(${tree.rotation}deg)`,
+//   })
+// }
 
-const sizeAnimation = (canvas, movieClip) => {
+const sizeAnimation = (canvas, mc) => {
   // Size the canvas scale
   Object.assign(canvas.style, {
     width: `${window.innerWidth}px`,
@@ -107,10 +108,29 @@ const sizeAnimation = (canvas, movieClip) => {
     height: window.innerHeight,
   })
   // Position the main movie clip
-  movieClip.x = window.innerWidth / 2
-  movieClip.y = window.innerHeight / 2
+  mc.x = window.innerWidth / 2
+  mc.y = window.innerHeight / 2
 
-  trackDIV()
+
+  const {innerHeight, innerWidth} = window
+  const scaler = innerHeight > innerWidth
+    ? (window.innerWidth/100) * 0.5
+    : (window.innerHeight/100) * 0.5
+
+
+  mc.scaleX = mc.scaleY = scaler
+
+Object.assign(scrollpane.style, {
+  height: `${window.innerHeight * 1.5}px`,
+  // height: "3000px",
+  // background: "url('bg.png')",
+  // padding: "0px",
+  // margin: "0px",
+})
+
+  console.log('SCALE: ', window.innerWidth/100)
+
+  // trackDIV()
 }
 
 
@@ -138,11 +158,14 @@ window.addEventListener("scroll", ()=> {
   const scrollPos = document.body.scrollTop
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
-  const targetFrame = (main.totalFrames * scrollPercent) - 1
+  let targetFrame = (main.totalFrames * scrollPercent) - 1
+  targetFrame = targetFrame > main.totalFrames - 1 
+    ? main.totalFrames - 1
+    : targetFrame
 
   main.gotoAndStop(targetFrame)
 
-  trackDIV()
+  // trackDIV()
 
 })
 

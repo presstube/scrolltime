@@ -4,7 +4,7 @@
   "description": "Exploring a turnkey starting point for JS projects.",
   "main": "src/main.js",
   "scripts": {
-    "beforebuild": "mkdir -p build && cp index.html build && cp assets/timeline-animation.js build && cp assets/bg.png build",
+    "beforebuild": "mkdir -p build && cp index.html build && cp assets/timeline-animation.js build && cp assets/bg.png build && cp assets/kiss.js build",
     "start": "npm run beforebuild && webpack-dev-server -d",
     "start-production": "npm start -p --devtool sourcemap",
     "test": "echo \"Error: no test specified\" && exit 1",
