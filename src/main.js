@@ -8,21 +8,6 @@
 
 // Library
 
-const sizeAnimation = (canvas, movieClip) => {
-  // Size the canvas scale
-  Object.assign(canvas.style, {
-    width: `${window.innerWidth}px`,
-    height: `${window.innerHeight}px`,
-  })
-  // Size the actual canvas bitmap
-  Object.assign(canvas, {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  })
-  // Position the main movie clip
-  movieClip.x = window.innerWidth / 2
-  movieClip.y = window.innerHeight / 2
-}
 
 
 
@@ -54,9 +39,31 @@ const main = root.main
 
 main.gotoAndStop(0)
 
-sizeAnimation(canvas, main)
-window.addEventListener("resize", () => {
-  sizeAnimation(canvas, main)
+const circle = document.createElement("div")
+document.body.appendChild(circle)
+Object.assign(circle.style, {
+  position: "fixed",
+  top: "-70px",
+  left: "-70px",
+  width: "140px",
+  height: "140px",
+  backgroundColor: "rgba(0, 0, 0, 0.1)",
+  borderRadius: "50%",
+  // transformOrigin: "-70px -70px"
+  // transform: "translate(-70px, -70px)"
+})
+
+const innerDot = document.createElement("div")
+circle.appendChild(innerDot)
+Object.assign(innerDot.style, {
+  position: "relative",
+  width: "10px",
+  height: "10px",
+  top: "10%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  borderRadius: "50%",
+  backgroundColor: "hsla(0, 50%, 0%, 0.2)"
 })
 
 const tree = main.tree
@@ -76,19 +83,50 @@ Object.assign(scrollpane.style, {
 document.body.appendChild(scrollpane)
 
 
+const trackDIV = () => {
+  Object.assign(circle.style, {
+    // top: `${tree.y + main.y}px`,
+    // left: `${tree.x + main.x}px`,
+    transform: `
+      translate(${tree.x + main.x}px, ${tree.y + main.y}px)
+      rotate(${tree.rotation}deg)
+      scale(${tree.scaleX}, ${tree.scaleY})`
+    // transform: `rotate(${tree.rotation}deg)`,
+  })
+}
 
-// DOM node that chases createjs object
+const sizeAnimation = (canvas, movieClip) => {
+  // Size the canvas scale
+  Object.assign(canvas.style, {
+    width: `${window.innerWidth}px`,
+    height: `${window.innerHeight}px`,
+  })
+  // Size the actual canvas bitmap
+  Object.assign(canvas, {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  })
+  // Position the main movie clip
+  movieClip.x = window.innerWidth / 2
+  movieClip.y = window.innerHeight / 2
 
-const node = document.createElement("div")
-document.body.appendChild(node)
-Object.assign(node.style, {
-  position: "fixed",
-  top: "0",
-  left: "0",
-  width: "20px",
-  height: "20px",
-  backgroundColor: "gray"
+  trackDIV()
+}
+
+
+sizeAnimation(canvas, main)
+window.addEventListener("resize", () => {
+  sizeAnimation(canvas, main)
 })
+
+
+
+
+
+// DOM circle that chases createjs object
+
+
+
 
 
 window.addEventListener("scroll", ()=> {
@@ -104,14 +142,7 @@ window.addEventListener("scroll", ()=> {
 
   main.gotoAndStop(targetFrame)
 
-  Object.assign(node.style, {
-    top: `${tree.y + main.y}px`,
-    left: `${tree.x + main.x}px`,
-    transform: `rotate(${tree.rotation}deg)`,
-  })
-
-
-  // console.log(winHeight, scrollpaneHeight, scrollPos, paneHeightOffset, scrollPercent)
+  trackDIV()
 
 })
 
