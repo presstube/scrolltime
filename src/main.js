@@ -132,8 +132,8 @@ const sizeAnimation = (canvas, mc) => {
   stage.scaleX = stage.scaleY = dpr
 
 Object.assign(scrollpane.style, {
-  height: `${window.innerHeight * 1.5}px`,
-  // height: "3000px",
+  // height: `${window.innerHeight * 1.5}px`,
+  height: "3000px",
   // background: "url('bg.png')",
   // padding: "0px",
   // margin: "0px",
