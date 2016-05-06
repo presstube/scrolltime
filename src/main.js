@@ -169,7 +169,7 @@ window.addEventListener("scroll", ()=> {
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
   // let targetFrame = (main.totalFrames * scrollPercent) - 1
-  let targetFrame = Math.abs(Math.floor(scrollPos / 3))
+  let targetFrame = Math.abs(Math.floor(scrollPos / 1))
 
   targetFrame = targetFrame > main.totalFrames - 1 
     ? main.totalFrames - 1
