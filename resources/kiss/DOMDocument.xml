@@ -5,7 +5,7 @@
           <DOMBitmapItem name="3" itemID="572a4ac0-00000014" sourceLastImported="1462389440" sourcePlatform="macintosh" externalFileCRC32="3873979661" externalFileSize="5386183" allowSmoothing="true" originalCompressionType="lossless" quality="50" href="3.png" bitmapDataHRef="M 3 1462389364.dat" frameRight="51200" frameBottom="28800"/>
      </media>
      <symbols>
-          <Include href="kiss-test-1.xml" loadImmediate="false" itemID="572a4ccb-00000019" lastModified="1462551894"/>
+          <Include href="kiss-test-1.xml" loadImmediate="false" itemID="572a4ccb-00000019" lastModified="1462556165"/>
           <Include href="Symbol 1.xml" loadImmediate="false" itemID="572a4a94-00000011" lastModified="1462389963"/>
      </symbols>
      <timelines>
