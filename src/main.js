@@ -24,7 +24,7 @@ document.body.appendChild(canvas)
 
 Object.assign(canvas.style, {
   position: "absolute",
-  top: "300px",
+  top: "200px",
   left: "100px",
   backgroundColor: "rgba(255,255,255,0.5)"
   // backgroundColor: "white"
@@ -169,7 +169,7 @@ window.addEventListener("scroll", ()=> {
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
   // let targetFrame = (main.totalFrames * scrollPercent) - 1
-  let targetFrame = Math.abs(Math.floor(scrollPos / 2))
+  let targetFrame = Math.abs(Math.floor(scrollPos / 3))
 
   targetFrame = targetFrame > main.totalFrames - 1 
     ? main.totalFrames - 1
