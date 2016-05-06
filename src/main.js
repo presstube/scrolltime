@@ -23,9 +23,11 @@ Object.assign(document.body.style, {
 document.body.appendChild(canvas)
 
 Object.assign(canvas.style, {
-  position: "fixed",
-  top: "0px",
-  left: "0px",
+  position: "absolute",
+  top: "200px",
+  left: "100px",
+  backgroundColor: "rgba(255,255,255,0.5)"
+  // backgroundColor: "white"
 })
 
 
@@ -68,7 +70,7 @@ main.gotoAndStop(0)
 
 // const tree = main.tree
 
-c.Ticker.setFPS(30)
+c.Ticker.setFPS(120)
 c.Ticker.addEventListener("tick", stage)
 
 const scrollpane = document.createElement("div")
@@ -76,9 +78,10 @@ const scrollpane = document.createElement("div")
 Object.assign(scrollpane.style, {
   // height: `${window.innerHeight * 1.2}px`,
   height: "3000px",
-  background: "url('bg.png')",
+  background: "url('assets/bg.png')",
   padding: "0px",
   margin: "0px",
+  // backgroundColor: "red"
 })
 
 document.body.appendChild(scrollpane)
@@ -97,28 +100,36 @@ document.body.appendChild(scrollpane)
 // }
 
 const sizeAnimation = (canvas, mc) => {
+  const {devicePixelRatio: dpr} = window
+  const size = 200
   // Size the canvas scale
   Object.assign(canvas.style, {
-    width: `${window.innerWidth}px`,
-    height: `${window.innerHeight}px`,
+    width: `${size}px`,
+    height: `${size}px`,
   })
   // Size the actual canvas bitmap
   Object.assign(canvas, {
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: size * dpr,
+    height: size * dpr,
   })
   // Position the main movie clip
-  mc.x = window.innerWidth / 2
-  mc.y = window.innerHeight / 2
+  // mc.x = window.innerWidth / 2
+  // mc.y = window.innerHeight / 2
 
 
-  const {innerHeight, innerWidth} = window
-  const scaler = innerHeight > innerWidth
-    ? (window.innerWidth/100) * 0.5
-    : (window.innerHeight/100) * 0.5
+  // const {innerHeight, innerWidth} = window
+  // const scaler = innerHeight > innerWidth
+  //   ? (window.innerWidth/100) * 0.5
+  //   : (window.innerHeight/100) * 0.5
 
+  // mc.x = mc.y = 50 * size * dpr
+  // mc.x = 0
+  // mc.y = 0
 
-  mc.scaleX = mc.scaleY = scaler
+  mc.scaleX = mc.scaleY = size / 100
+  // mc.scaleX = mc.scaleY = scaler
+  // mc.scaleX = mc.scaleY = 3
+  stage.scaleX = stage.scaleY = dpr
 
 Object.assign(scrollpane.style, {
   height: `${window.innerHeight * 1.5}px`,
@@ -126,9 +137,8 @@ Object.assign(scrollpane.style, {
   // background: "url('bg.png')",
   // padding: "0px",
   // margin: "0px",
+  backgroundColor: "#eee"
 })
-
-  console.log('SCALE: ', window.innerWidth/100)
 
   // trackDIV()
 }
@@ -158,11 +168,13 @@ window.addEventListener("scroll", ()=> {
   const scrollPos = document.body.scrollTop
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
-  let targetFrame = (main.totalFrames * scrollPercent) - 1
+  // let targetFrame = (main.totalFrames * scrollPercent) - 1
+  let targetFrame = Math.floor(scrollPos / 3)
   targetFrame = targetFrame > main.totalFrames - 1 
     ? main.totalFrames - 1
     : targetFrame
 
+  // main.gotoAndStop(targetFrame)
   main.gotoAndStop(targetFrame)
 
   // trackDIV()
