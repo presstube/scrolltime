@@ -24,7 +24,7 @@ document.body.appendChild(canvas)
 
 Object.assign(canvas.style, {
   position: "absolute",
-  top: "200px",
+  top: "100px",
   left: "100px",
   backgroundColor: "rgba(255,255,255,0.5)"
   // backgroundColor: "white"
@@ -33,13 +33,13 @@ Object.assign(canvas.style, {
 
 
 const stage = new c.Stage(canvas)
-const root = new lib.kiss()
+const root = new lib.kiss2()
 stage.addChild(root)
 stage.update()
 
 const main = root.main
 
-main.gotoAndStop(0)
+main.gotoAndStop(3)
 
 // const circle = document.createElement("div")
 // document.body.appendChild(circle)
@@ -169,11 +169,17 @@ window.addEventListener("scroll", ()=> {
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
   // let targetFrame = (main.totalFrames * scrollPercent) - 1
-  let targetFrame = Math.abs(Math.floor(scrollPos / 3))
+  let targetFrame = Math.floor(scrollPos / 3) + 3
+
+  console.log(targetFrame)
 
   targetFrame = targetFrame > main.totalFrames - 1 
     ? main.totalFrames - 1
     : targetFrame
+
+  // targetFrame = targetFrame > main.totalFrames - 1 
+  //   ? main.totalFrames - 4
+  //   : targetFrame
 
   // main.gotoAndStop(targetFrame)
   main.gotoAndStop(targetFrame)

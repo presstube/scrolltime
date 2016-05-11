@@ -1,8 +1,11 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="kiss-test-2" itemID="573333a2-0000000b" lastModified="1462979633">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="kiss-test-2" itemID="573333a2-0000000b" lastModified="1462979640">
+  <persistentData>
+    <PD n="CreateJSToolkit_timelinedata" v="version&#xA;0.1&#xA;loop&#xA;true"/>
+  </persistentData>
   <timeline>
     <DOMTimeline name="kiss-test-2">
       <layers>
-        <DOMLayer name="details" color="#FF800A" autoNamed="false">
+        <DOMLayer name="details" color="#FF800A" current="true" isSelected="true" autoNamed="false">
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
@@ -2272,7 +2275,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="Layer 5" color="#009999" locked="true" outline="true" current="true" isSelected="true" useOutlineView="true" layerType="guide">
+        <DOMLayer name="Layer 5" color="#009999" locked="true" outline="true" useOutlineView="true" layerType="guide">
           <frames>
             <DOMFrame index="0" duration="22" keyMode="9728">
               <elements>
