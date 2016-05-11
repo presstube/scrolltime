@@ -39,7 +39,7 @@ stage.update()
 
 const main = root.main
 
-main.gotoAndStop(3)
+main.gotoAndStop(6)
 
 // const circle = document.createElement("div")
 // document.body.appendChild(circle)
@@ -169,7 +169,7 @@ window.addEventListener("scroll", ()=> {
   const paneHeightOffset = scrollpaneHeight - winHeight
   const scrollPercent = scrollPos / paneHeightOffset
   // let targetFrame = (main.totalFrames * scrollPercent) - 1
-  let targetFrame = Math.floor(scrollPos / 3) + 3
+  let targetFrame = Math.floor(scrollPos / 1.5) + 6
 
   console.log(targetFrame)
 
